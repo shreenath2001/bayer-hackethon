@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load app1_extras %}
+
+{% block title %} | Filtered Product  {% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="wrapper">
+            {% if flag %}
+                <h2>List of Products</h2>
+                <h3>Input Parameters provided:</h3>
+                {% for input in inputs %}
+                    <p>{{ input }}</p>
+                {% endfor %}
+                {% if not length_length %}
+                    <h2>No Products Found</h2>
+                {% endif %}
+            {% else %}
+                <h2>List of All Products</h2>
+            {% endif %}
+        </div>
+
+        {% for i in length %}
+            <button type="button" class="collapsible">{{ product_name|index:i }}</button>
+            <div class="content">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Product Name: {{product_name|index:i}}</h5>
+                        <p class="card-text">Product Type: {{product_type|index:i}}</p>
+                        <p class="card-text">Key Benefits</p>
+                        <ul>
+                            {% for benefit in key_benefits|index:i %}
+                                <li>{{ benefit }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% if not crop_flag %}
+                        <p class="card-text">Registered Crops</p>
+                        <ul>
+                            {% for crop in registered_crops|index:i %}
+                                <li>{{ crop }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        {% if not pest_flag %}
+                        <p class="card-text">Pests</p>
+                        <ul>
+                            {% for pest in effective_against|index:i %}
+                                <li>{{ pest }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        {% if not state_flag %}
+                        <p class="card-text">States</p>
+                        <ul>
+                            {% for state in geo_location|index:i %}
+                                <li>{{ state }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        <div><a href="{{use_mix|index:i}}" target="_blank">Use&Mix</a></div>
+                        <div><a href="{{safety_ins|index:i}}" target="_blank">Safety Instructions</a></div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
