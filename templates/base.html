@@ -14,12 +14,40 @@
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+    <style>
+      #loader {
+            border: 12px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 12px solid #444444;
+            width: 70px;
+            height: 70px;
+            animation: spin 1s linear infinite;
+        }
+          
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+          
+        .center {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+
     {% block style %} {% endblock %}
 
     <title>Bayer {% block title %}{% endblock %}</title>
   </head>
   <body>
     
+    <div id="loader" class="center"></div>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">Bayer</a>
@@ -59,19 +87,19 @@
               href="{% url 'explore' %}">Explore Products</a>
             </li>
             <li 
-            {% if 'feedback' in request.path %}
+            {% if 'crop-recommend' in request.path %}
                 class = 'nav-item active'
             {% else %}
                 class = 'nav-item'
             {% endif %} 
             >
               <a 
-              {% if 'feedback' in request.path %}
-                class = 'nav-link active'
+              {% if 'crop-recommend' in request.path %}
+                class="nav-link active"
               {% else %}
-                class = 'nav-link'
-              {% endif %}
-              href="{% url 'feedback' %}">Feedback</a>
+                class="nav-link"
+              {% endif %} 
+              href="{% url 'crop-recommend' %}">Crop Recommendation</a>
             </li>
             <li 
             {% if 'trace' in request.path %}
@@ -86,22 +114,25 @@
               {% else %}
                 class = 'nav-link'
               {% endif %}
-              href="{% url 'trace' %}">Product Tracibility</a>
+              href="{% url 'trace' %}">Track Order</a>
             </li>
             <li 
-            {% if 'crop-recommend' in request.path %}
+            {% if 'feedback' in request.path %}
                 class = 'nav-item active'
             {% else %}
                 class = 'nav-item'
             {% endif %} 
             >
               <a 
-              {% if 'crop-recommend' in request.path %}
-                class="nav-link active"
+              {% if 'feedback' in request.path %}
+                class = 'nav-link active'
               {% else %}
-                class="nav-link"
-              {% endif %} 
-              href="{% url 'crop-recommend' %}">Crop Recommendation</a>
+                class = 'nav-link'
+              {% endif %}
+              href="{% url 'feedback' %}">Feedback</a>
+            </li>
+            <li class = 'nav-item'>
+              <a class = 'nav-link' href="/">Plant Disease Classification</a>
             </li>
           </ul>
         </div>
@@ -127,5 +158,21 @@
     -->
     <script src = "{% static 'js/script.js' %}"></script>
     <script src = "{% static 'js/suggestions.js' %}"></script>
+
+    <script>
+      document.onreadystatechange = function() {
+          if (document.readyState !== "complete") {
+              document.querySelector(
+                "body").style.visibility = "hidden";
+              document.querySelector(
+                "#loader").style.visibility = "visible";
+          } else {
+              document.querySelector(
+                "#loader").style.display = "none";
+              document.querySelector(
+                "body").style.visibility = "visible";
+          }
+      };
+    </script>
   </body>
 </html>

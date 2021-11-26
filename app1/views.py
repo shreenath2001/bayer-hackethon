@@ -465,7 +465,7 @@ def absolute(request):
         'pest_flag':pest_flag,
     }
     
-    return render(request, 'app1/absolute.html', data) 
+    return render(request, 'app1/product.html', data) 
 
 def wolverine(request):
     index = [33]
@@ -542,7 +542,7 @@ def wolverine(request):
         'pest_flag':pest_flag,
     }
     
-    return render(request, 'app1/wolverine.html', data) 
+    return render(request, 'app1/product.html', data) 
 
 def alion(request):
     index = [63]
@@ -619,7 +619,7 @@ def alion(request):
         'pest_flag':pest_flag,
     }
     
-    return render(request, 'app1/wolverine.html', data) 
+    return render(request, 'app1/product.html', data) 
 
 def scala(request):
     index = [14]
@@ -696,7 +696,7 @@ def scala(request):
         'pest_flag':pest_flag,
     }
     
-    return render(request, 'app1/wolverine.html', data) 
+    return render(request, 'app1/product.html', data) 
 
 def movento(request):
     index = [25]
@@ -773,4 +773,4 @@ def movento(request):
         'pest_flag':pest_flag,
     }
     
-    return render(request, 'app1/wolverine.html', data)
+    return render(request, 'app1/product.html', data)
