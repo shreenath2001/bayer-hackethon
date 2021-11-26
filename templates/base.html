@@ -14,11 +14,12 @@
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+    {% block style %} {% endblock %}
+
     <title>Bayer {% block title %}{% endblock %}</title>
   </head>
   <body>
     
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">Bayer</a>
@@ -55,7 +56,13 @@
               href="{% url 'feedback' %}">Feedback</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Product Tracibility</a>
+              <a 
+              {% if 'trace' in request.path %}
+                class = 'nav-link active'
+              {% else %}
+                class = 'nav-link'
+              {% endif %}
+              href="{% url 'trace' %}">Product Tracibility</a>
             </li>
             <li class="nav-item">
               <a 
@@ -70,6 +77,8 @@
         </div>
       </div>
     </nav>
+    <!-- <div id="overlay">  
+    </div> -->
 
     {% block content %}
 

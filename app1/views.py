@@ -1,6 +1,10 @@
 from django.shortcuts import redirect, render
 import pandas as pd
 import joblib
+from .models import Contact, OrderUpdate
+from django.contrib import messages
+from django.core.mail import send_mail
+from django.contrib.auth.models import User
 
 model = joblib.load('Crop_Recommendation/model.pkl')
 
@@ -129,7 +133,14 @@ def filterproduct(request):
         producttype = ''
         try:
             producttype = request.POST['producttype']
-            input5 = producttype
+            if(producttype == 'F'):
+                input5 = 'Fungicides'
+            elif(producttype == 'HE'):
+                input5 = 'Herbicides'
+            elif(producttype == 'HA'):
+                input5 = 'Harvest Aids'
+            else:
+                input5 = 'Insecticides'
         except: 
             pass
 
@@ -195,7 +206,16 @@ def filterproduct(request):
         else:
             for val in index:
                 f_product_name.append(df.iloc[val]['product_name'])
-                f_product_type.append(df.iloc[val]['product_type'])
+                productType = df.iloc[val]['product_type']
+                if(productType == 'F'):
+                    f_product_type.append('Fungicides')
+                elif(productType == 'HE'):
+                    f_product_type.append('Herbicides')
+                elif(productType == 'HA'):
+                    f_product_type.append('Harvest Aids')
+                else:
+                    f_product_type.append('Insecticides')
+                #f_product_type.append(df.iloc[val]['product_type'])
                 f_key_benefit.append(df.iloc[val]['key_benefits'])
                 f_product_description.append(df.iloc[val]['safety_ins'])
                 f_use_mix.append(df.iloc[val]['use&mix'])
@@ -278,4 +298,479 @@ def result(request):
         return render(request, 'app1/crop_recommend.html', data)
 
 def feedback(request):
+    if request.method == 'POST':
+        first = request.POST['first']
+        last = request.POST['last']
+        email = request.POST['email']
+        message = request.POST['message']
+        """ print("first_name:", first)
+        print("last_name:", last)
+        print("email:", email)
+        print("message:", message) """
+
+        contact = Contact(first_name=first, last_name=last, email=email, message=message)
+
+        admin_info = User.objects.get(is_superuser=True)
+        admin_email = admin_info.email
+
+        send_mail(
+                'New Feedback',
+                'You have a new inquiry, ' + 'Please login to your admin panel for more info.',
+                'bharadwajshreenath@gmail.com',
+                [admin_email],
+                fail_silently=True,
+            )
+
+        contact.save()
+        messages.success(request, "Thank you for your feedback, we will get back to you shortly!!")
+        return redirect('/feedback')
     return render(request, 'app1/feedback.html')
+
+def trace(request):
+    if request.method == 'POST':
+        message = ''
+        orderid = int(request.POST['orderId'])
+        print("orderid:", orderid)
+        try:
+            order = OrderUpdate.objects.all().filter(order_id=orderid)
+            #print(order.values_list('update_desc'))
+            update = list(order.values_list('update_desc'))[0][0].split(',')
+            arrived = list(order.values_list('arrived'))[0][0].split(',')
+            dispatched = list(order.values_list('dispatched'))[0][0].split(',')
+            arrived_date = list(order.values_list('arrived_date'))[0][0].split(',')
+            dispatched_date = list(order.values_list('dispatched_date'))[0][0].split(',')
+            arrived_time = list(order.values_list('arrived_time'))[0][0].split(',')
+            dispatched_time = list(order.values_list('dispatched_time'))[0][0].split(',')
+            """ print("update:", update)
+            print("arrived:", arrived)
+            print("arrived_date:",arrived_date)
+            print("arrived_time:", arrived_time) """
+            length = len(update)
+            updations = []
+            for i in range(length):
+                sub = []
+                if(i == 0):
+                    sub.append(update[i])
+                    sub.append('')
+                    if(dispatched[i] == 'Y'):
+                        sub.append('Dispatched on '+ dispatched_date[i]+ ' at '+ dispatched_time[i])
+                elif(i!=length-1):
+                    sub.append(update[i])
+                    if(arrived[i] == 'Y'):
+                        sub.append('Arrived on '+ arrived_date[i]+ ' at '+ arrived_time[i])
+                    else:
+                        sub.append('')
+                    if(dispatched[i] == 'Y'):
+                        sub.append('Dispatched on '+ dispatched_date[i]+ ' at '+ dispatched_time[i])
+                    else:
+                        sub.append('')
+                else:
+                    sub.append('Dest.')
+                    if(arrived[i] == 'Y'):
+                        sub.append('Arrived at '+ arrived_date[i]+ ' on '+ arrived_time[i])
+                    else:
+                        sub.append('')
+                    sub.append('')
+                updations.append(sub)
+            #print("updations:", updations)
+            message = "Your order has been placed!!"
+            data = {
+                'updations': updations,
+                'message':message,
+                'length':[0, 1, 2],
+            }
+
+        except:
+            message = "No order with this order id exist"
+            #print("qwerty")
+            data = {
+                'message':message,
+            }
+
+        return render(request, 'app1/trace.html', data)
+    return render(request, 'app1/trace.html')
+
+def absolute(request):
+    index = [0]
+    f_product_name = []
+    f_product_type = []
+    f_product_crop = []
+    f_product_state = []
+    f_product_pest = []
+    f_key_benefit = []
+    f_product_description = []
+    f_use_mix = []
+    for val in index:
+        f_product_name.append(df.iloc[val]['product_name'])
+        productType = df.iloc[val]['product_type']
+        if(productType == 'F'):
+            f_product_type.append('Fungicides')
+        elif(productType == 'HE'):
+            f_product_type.append('Herbicides')
+        elif(productType == 'HA'):
+            f_product_type.append('Harvest Aids')
+        else:
+            f_product_type.append('Insecticides')
+        #f_product_type.append(df.iloc[val]['product_type'])
+        f_key_benefit.append(df.iloc[val]['key_benefits'])
+        f_product_description.append(df.iloc[val]['safety_ins'])
+        f_use_mix.append(df.iloc[val]['use&mix'])
+    if(len(f_product_crop) == 0):
+        crop_flag = 0
+        for val in index:
+            f_product_crop.append(df.iloc[val]['registered_crops'])
+    else:
+        crop_flag = 1
+    if(len(f_product_state) == 0):
+        state_flag = 0
+        for val in index:
+            f_product_state.append(df.iloc[val]['geo_location'])
+    else:
+        state_flag = 1
+    if(len(f_product_pest) == 0):
+        pest_flag = 0
+        for val in index:
+            f_product_pest.append(df.iloc[val]['effective_against'])
+    else:
+        pest_flag = 1
+    length = [i for i in range(len(f_product_name))]
+    for i in range(len(f_key_benefit)):
+        f_key_benefit[i] = f_key_benefit[i][1:-1]
+        f_key_benefit[i] = f_key_benefit[i].split(",")
+        print(f_key_benefit[i])
+    for i in range(len(f_product_crop)):
+        f_product_crop[i] = f_product_crop[i][1:-1]
+        f_product_crop[i] = f_product_crop[i].split("',")
+    for i in range(len(f_product_pest)):
+        f_product_pest[i] = f_product_pest[i][1:-1]
+        f_product_pest[i] = f_product_pest[i].split("',")
+    for i in range(len(f_product_state)):
+        f_product_state[i] = f_product_state[i][1:-1]
+        f_product_state[i] = f_product_state[i].split(',')
+    length_length = len(length)
+    data = {
+        'indexes':index,
+        'product_name':f_product_name,
+        'product_type':f_product_type,
+        'registered_crops':f_product_crop,
+        'geo_location':f_product_state,
+        'effective_against':f_product_pest,
+        'key_benefits':f_key_benefit,
+        'safety_ins':f_product_description,
+        'use_mix':f_use_mix,
+        'length':length,
+        'length_length':length_length,
+        'crop_flag':crop_flag,
+        'state_flag':state_flag,
+        'pest_flag':pest_flag,
+    }
+    
+    return render(request, 'app1/absolute.html', data) 
+
+def wolverine(request):
+    index = [33]
+    f_product_name = []
+    f_product_type = []
+    f_product_crop = []
+    f_product_state = []
+    f_product_pest = []
+    f_key_benefit = []
+    f_product_description = []
+    f_use_mix = []
+    for val in index:
+        f_product_name.append(df.iloc[val]['product_name'])
+        productType = df.iloc[val]['product_type']
+        if(productType == 'F'):
+            f_product_type.append('Fungicides')
+        elif(productType == 'HE'):
+            f_product_type.append('Herbicides')
+        elif(productType == 'HA'):
+            f_product_type.append('Harvest Aids')
+        else:
+            f_product_type.append('Insecticides')
+        #f_product_type.append(df.iloc[val]['product_type'])
+        f_key_benefit.append(df.iloc[val]['key_benefits'])
+        f_product_description.append(df.iloc[val]['safety_ins'])
+        f_use_mix.append(df.iloc[val]['use&mix'])
+    if(len(f_product_crop) == 0):
+        crop_flag = 0
+        for val in index:
+            f_product_crop.append(df.iloc[val]['registered_crops'])
+    else:
+        crop_flag = 1
+    if(len(f_product_state) == 0):
+        state_flag = 0
+        for val in index:
+            f_product_state.append(df.iloc[val]['geo_location'])
+    else:
+        state_flag = 1
+    if(len(f_product_pest) == 0):
+        pest_flag = 0
+        for val in index:
+            f_product_pest.append(df.iloc[val]['effective_against'])
+    else:
+        pest_flag = 1
+    length = [i for i in range(len(f_product_name))]
+    for i in range(len(f_key_benefit)):
+        f_key_benefit[i] = f_key_benefit[i][1:-1]
+        f_key_benefit[i] = f_key_benefit[i].split(",")
+        print(f_key_benefit[i])
+    for i in range(len(f_product_crop)):
+        f_product_crop[i] = f_product_crop[i][1:-1]
+        f_product_crop[i] = f_product_crop[i].split("',")
+    for i in range(len(f_product_pest)):
+        f_product_pest[i] = f_product_pest[i][1:-1]
+        f_product_pest[i] = f_product_pest[i].split("',")
+    for i in range(len(f_product_state)):
+        f_product_state[i] = f_product_state[i][1:-1]
+        f_product_state[i] = f_product_state[i].split(',')
+    length_length = len(length)
+    data = {
+        'indexes':index,
+        'product_name':f_product_name,
+        'product_type':f_product_type,
+        'registered_crops':f_product_crop,
+        'geo_location':f_product_state,
+        'effective_against':f_product_pest,
+        'key_benefits':f_key_benefit,
+        'safety_ins':f_product_description,
+        'use_mix':f_use_mix,
+        'length':length,
+        'length_length':length_length,
+        'crop_flag':crop_flag,
+        'state_flag':state_flag,
+        'pest_flag':pest_flag,
+    }
+    
+    return render(request, 'app1/wolverine.html', data) 
+
+def alion(request):
+    index = [63]
+    f_product_name = []
+    f_product_type = []
+    f_product_crop = []
+    f_product_state = []
+    f_product_pest = []
+    f_key_benefit = []
+    f_product_description = []
+    f_use_mix = []
+    for val in index:
+        f_product_name.append(df.iloc[val]['product_name'])
+        productType = df.iloc[val]['product_type']
+        if(productType == 'F'):
+            f_product_type.append('Fungicides')
+        elif(productType == 'HE'):
+            f_product_type.append('Herbicides')
+        elif(productType == 'HA'):
+            f_product_type.append('Harvest Aids')
+        else:
+            f_product_type.append('Insecticides')
+        #f_product_type.append(df.iloc[val]['product_type'])
+        f_key_benefit.append(df.iloc[val]['key_benefits'])
+        f_product_description.append(df.iloc[val]['safety_ins'])
+        f_use_mix.append(df.iloc[val]['use&mix'])
+    if(len(f_product_crop) == 0):
+        crop_flag = 0
+        for val in index:
+            f_product_crop.append(df.iloc[val]['registered_crops'])
+    else:
+        crop_flag = 1
+    if(len(f_product_state) == 0):
+        state_flag = 0
+        for val in index:
+            f_product_state.append(df.iloc[val]['geo_location'])
+    else:
+        state_flag = 1
+    if(len(f_product_pest) == 0):
+        pest_flag = 0
+        for val in index:
+            f_product_pest.append(df.iloc[val]['effective_against'])
+    else:
+        pest_flag = 1
+    length = [i for i in range(len(f_product_name))]
+    for i in range(len(f_key_benefit)):
+        f_key_benefit[i] = f_key_benefit[i][1:-1]
+        f_key_benefit[i] = f_key_benefit[i].split(",")
+        print(f_key_benefit[i])
+    for i in range(len(f_product_crop)):
+        f_product_crop[i] = f_product_crop[i][1:-1]
+        f_product_crop[i] = f_product_crop[i].split("',")
+    for i in range(len(f_product_pest)):
+        f_product_pest[i] = f_product_pest[i][1:-1]
+        f_product_pest[i] = f_product_pest[i].split("',")
+    for i in range(len(f_product_state)):
+        f_product_state[i] = f_product_state[i][1:-1]
+        f_product_state[i] = f_product_state[i].split(',')
+    length_length = len(length)
+    data = {
+        'indexes':index,
+        'product_name':f_product_name,
+        'product_type':f_product_type,
+        'registered_crops':f_product_crop,
+        'geo_location':f_product_state,
+        'effective_against':f_product_pest,
+        'key_benefits':f_key_benefit,
+        'safety_ins':f_product_description,
+        'use_mix':f_use_mix,
+        'length':length,
+        'length_length':length_length,
+        'crop_flag':crop_flag,
+        'state_flag':state_flag,
+        'pest_flag':pest_flag,
+    }
+    
+    return render(request, 'app1/wolverine.html', data) 
+
+def scala(request):
+    index = [14]
+    f_product_name = []
+    f_product_type = []
+    f_product_crop = []
+    f_product_state = []
+    f_product_pest = []
+    f_key_benefit = []
+    f_product_description = []
+    f_use_mix = []
+    for val in index:
+        f_product_name.append(df.iloc[val]['product_name'])
+        productType = df.iloc[val]['product_type']
+        if(productType == 'F'):
+            f_product_type.append('Fungicides')
+        elif(productType == 'HE'):
+            f_product_type.append('Herbicides')
+        elif(productType == 'HA'):
+            f_product_type.append('Harvest Aids')
+        else:
+            f_product_type.append('Insecticides')
+        #f_product_type.append(df.iloc[val]['product_type'])
+        f_key_benefit.append(df.iloc[val]['key_benefits'])
+        f_product_description.append(df.iloc[val]['safety_ins'])
+        f_use_mix.append(df.iloc[val]['use&mix'])
+    if(len(f_product_crop) == 0):
+        crop_flag = 0
+        for val in index:
+            f_product_crop.append(df.iloc[val]['registered_crops'])
+    else:
+        crop_flag = 1
+    if(len(f_product_state) == 0):
+        state_flag = 0
+        for val in index:
+            f_product_state.append(df.iloc[val]['geo_location'])
+    else:
+        state_flag = 1
+    if(len(f_product_pest) == 0):
+        pest_flag = 0
+        for val in index:
+            f_product_pest.append(df.iloc[val]['effective_against'])
+    else:
+        pest_flag = 1
+    length = [i for i in range(len(f_product_name))]
+    for i in range(len(f_key_benefit)):
+        f_key_benefit[i] = f_key_benefit[i][1:-1]
+        f_key_benefit[i] = f_key_benefit[i].split(",")
+        print(f_key_benefit[i])
+    for i in range(len(f_product_crop)):
+        f_product_crop[i] = f_product_crop[i][1:-1]
+        f_product_crop[i] = f_product_crop[i].split("',")
+    for i in range(len(f_product_pest)):
+        f_product_pest[i] = f_product_pest[i][1:-1]
+        f_product_pest[i] = f_product_pest[i].split("',")
+    for i in range(len(f_product_state)):
+        f_product_state[i] = f_product_state[i][1:-1]
+        f_product_state[i] = f_product_state[i].split(',')
+    length_length = len(length)
+    data = {
+        'indexes':index,
+        'product_name':f_product_name,
+        'product_type':f_product_type,
+        'registered_crops':f_product_crop,
+        'geo_location':f_product_state,
+        'effective_against':f_product_pest,
+        'key_benefits':f_key_benefit,
+        'safety_ins':f_product_description,
+        'use_mix':f_use_mix,
+        'length':length,
+        'length_length':length_length,
+        'crop_flag':crop_flag,
+        'state_flag':state_flag,
+        'pest_flag':pest_flag,
+    }
+    
+    return render(request, 'app1/wolverine.html', data) 
+
+def movento(request):
+    index = [25]
+    f_product_name = []
+    f_product_type = []
+    f_product_crop = []
+    f_product_state = []
+    f_product_pest = []
+    f_key_benefit = []
+    f_product_description = []
+    f_use_mix = []
+    for val in index:
+        f_product_name.append(df.iloc[val]['product_name'])
+        productType = df.iloc[val]['product_type']
+        if(productType == 'F'):
+            f_product_type.append('Fungicides')
+        elif(productType == 'HE'):
+            f_product_type.append('Herbicides')
+        elif(productType == 'HA'):
+            f_product_type.append('Harvest Aids')
+        else:
+            f_product_type.append('Insecticides')
+        #f_product_type.append(df.iloc[val]['product_type'])
+        f_key_benefit.append(df.iloc[val]['key_benefits'])
+        f_product_description.append(df.iloc[val]['safety_ins'])
+        f_use_mix.append(df.iloc[val]['use&mix'])
+    if(len(f_product_crop) == 0):
+        crop_flag = 0
+        for val in index:
+            f_product_crop.append(df.iloc[val]['registered_crops'])
+    else:
+        crop_flag = 1
+    if(len(f_product_state) == 0):
+        state_flag = 0
+        for val in index:
+            f_product_state.append(df.iloc[val]['geo_location'])
+    else:
+        state_flag = 1
+    if(len(f_product_pest) == 0):
+        pest_flag = 0
+        for val in index:
+            f_product_pest.append(df.iloc[val]['effective_against'])
+    else:
+        pest_flag = 1
+    length = [i for i in range(len(f_product_name))]
+    for i in range(len(f_key_benefit)):
+        f_key_benefit[i] = f_key_benefit[i][1:-1]
+        f_key_benefit[i] = f_key_benefit[i].split(",")
+        print(f_key_benefit[i])
+    for i in range(len(f_product_crop)):
+        f_product_crop[i] = f_product_crop[i][1:-1]
+        f_product_crop[i] = f_product_crop[i].split("',")
+    for i in range(len(f_product_pest)):
+        f_product_pest[i] = f_product_pest[i][1:-1]
+        f_product_pest[i] = f_product_pest[i].split("',")
+    for i in range(len(f_product_state)):
+        f_product_state[i] = f_product_state[i][1:-1]
+        f_product_state[i] = f_product_state[i].split(',')
+    length_length = len(length)
+    data = {
+        'indexes':index,
+        'product_name':f_product_name,
+        'product_type':f_product_type,
+        'registered_crops':f_product_crop,
+        'geo_location':f_product_state,
+        'effective_against':f_product_pest,
+        'key_benefits':f_key_benefit,
+        'safety_ins':f_product_description,
+        'use_mix':f_use_mix,
+        'length':length,
+        'length_length':length_length,
+        'crop_flag':crop_flag,
+        'state_flag':state_flag,
+        'pest_flag':pest_flag,
+    }
+    
+    return render(request, 'app1/wolverine.html', data)

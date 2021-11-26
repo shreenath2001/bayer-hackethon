@@ -4,12 +4,27 @@
     box-sizing: border-box;
 }
 
-/* .navbar{
-    position: fixed;
+body{
+    overflow: hidden;
+}
+
+/* #overlay {
+   background-image: url("http://allroundnews.com/wp-content/uploads/2012/02/seamless-wood-texture-free-76.jpg");
+   background-color: white;
+   width: 100%;
+   height: 30px;
+   margin: 0;
+   top: -20px;
+   margin-left: auto;
+   margin-right: auto;
+}*/
+
+.navbar{
+    /* position: fixed;
     top: 0;
-    width: 100%;
+    width: 100%; */
     z-index: 1;
-} */
+}
 nav li {
     display: inline-block;
     height: 100%;
@@ -20,19 +35,77 @@ nav li {
   background-color: rgb(16, 16, 129);
 }
 
-.image{
-    background-image: url("../img/Picture1.jpg");
-    background-repeat: no-repeat;
+.image-explore{
+    background-image: url("../img/bg11.jpg");
+    /* background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    opacity: 1.0;
-    min-height: 100vh;
-    max-height: 100%;
+    opacity: 1.0; */
+    height: 100vh;
+    object-fit: contain;
+}
+
+.image-feedback{
+  background-image: url("../img/bg13.jpg");
+  /* background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 1.0; */
+  height: 100vh;
+  object-fit: contain;
+  background-size: cover;
+}
+
+.image-recommend{
+  background-image: url("../img/bg18.jpg");
+  /* background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 1.0; */
+  height: 100vh;
+  object-fit: contain;
+  background-size: cover;
+}
+
+.image-result{
+  background-image: url("../img/bg19.jpg");
+  /* background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 1.0; */
+  height: 100vh;
+  object-fit: contain;
+  background-size: cover;
+}
+
+.image-trace{
+  background-image: url("../img/bg21.jpg");
+  /* background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 1.0; */
+  min-height: 100vh;
+  height: 100%;
+  object-fit: contain;
+  background-size: cover;
+}
+
+.d-block{
+  height: 100vh;
+  width: 100vw;
+  /* background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; */
+  object-fit: cover;
 }
 
 .wrapper{
     max-width: 450px;
     margin: 40px auto;
+  }
+.wrapper1{
+    max-width: 450px;
+    margin: 0 auto;
   }
   .wrapper .search-input{
     background: #fff;
@@ -81,44 +154,6 @@ nav li {
     background: #efefef;
   }
 
-/* Style the button that is used to open and close the collapsible content */
-.collapsible {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-}
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active1, .collapsible:hover {
-  background-color: #ccc;
-}
-
-/* Style the collapsible content. Note: hidden by default */
-.content {
-  padding: 0 18px;
-  display: block;
-  overflow: hidden;
-  background-color: #f1f1f1;
-}
-
-.collapsible:after {
-  content: '\02795'; /* Unicode character for "plus" sign (+) */
-  font-size: 13px;
-  color: white;
-  float: right;
-  margin-left: 5px;
-}
-
-.active1:after {
-  content: "\2796"; /* Unicode character for "minus" sign (-) */
-}
-
 .mdi {
   font-size: 50px
 }
@@ -127,4 +162,177 @@ nav li {
   padding: 8rem !important
 }
 
+.heading-contact{
+  margin-top: 50px;
+}
 
+/* The actual timeline (the vertical ruler) */
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: rgb(54, 54, 54);
+  top: 0;
+  bottom: 0;
+  left: 0%;
+  margin-left: -3px;
+}
+
+/* Container around content */
+.container1 {
+  padding: 10px 20px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+
+/* The circles on the timeline */
+.container1::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -17px;
+  background-color: white;
+  border: 4px solid #e01515;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Place the container to the left */
+/* .left {
+  left: 0;
+}
+ */
+
+/* Place the container to the right */
+.right {
+  left: 0%;
+}
+
+/* Add arrows to the left container (pointing right) */
+/* .left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent white;
+} */
+
+/* Add arrows to the right container (pointing left) */
+/* .right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 30px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+} */
+
+/* Fix the circle for containers on the right side */
+.right::after {
+  left: -16px;
+}
+
+/* The actual content */
+.content1 {
+  padding: 20px 30px;
+  background-color: white;
+  position: relative;
+  border-radius: 6px;
+}
+
+.img-trace{
+  position: absolute;
+  width: 600px;
+  height: auto;
+  top: -4%;
+  left: 55%;
+}
+
+
+@media only screen and (max-width: 800px) {
+  body {
+    overflow-y: auto;
+  }
+  #overlay{
+    height: 20px;
+  }
+  .image-explore{
+    min-height: 100vh;
+    height: 100%;
+  }
+  .image-feedback{
+    min-height: 100vh;
+    height: 100%;
+  }
+  .image-recommend{
+    height: 100%;
+  }
+  .image-result{
+    min-height: 100vh;
+    height: 100%;
+  }
+  .image-trace{
+    min-height: 100vh;
+    height: 100%;
+  }
+  .heading-contact{
+    margin-top: 0px;
+    display: none;
+  }
+  .para-contact{
+    display: none;
+  }
+
+  /* Place the timelime to the left */
+  .timeline::after {
+    left: 31px;
+  }
+
+/* Full-width containers */
+  .container1 {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+/* Make sure that all arrows are pointing leftwards */
+  .container1::before {
+    left: 60px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+  }
+
+/* Make sure all circles are at the same spot */
+  .left::after, .right::after {
+    left: 15px;
+  }
+
+/* Make all right containers behave like the left ones */
+  .right {
+    left: 0%;
+  }
+
+  .img-trace{
+    display: none;
+  }
+}

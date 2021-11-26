@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'bayer.urls'
@@ -82,7 +84,7 @@ WSGI_APPLICATION = 'bayer.wsgi.application'
     }
 } """
 
-DATABASES = {
+''' DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'bayer_db',
@@ -91,7 +93,9 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': 5433,
     }
-}
+} '''
+
+DATABASES = {'default': dj_database_url.config(default='postgres://postgres:Shree2001@localhost/bayer_db')}
 
 
 # Password validation
@@ -135,6 +139,16 @@ STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'bayer/static'),
 ]
+
+# Email sending
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'bharadwajshreenath@gmail.com'
+EMAIL_HOST_PASSWORD = 'Shree2001'
+EMAIL_USE_TLS = True
+
+# Whitenoise settings
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

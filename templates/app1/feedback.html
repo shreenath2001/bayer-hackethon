@@ -7,31 +7,39 @@
 {% endblock title %}
 
 {% block content %}
+    <div class="image-feedback">
+    <div class="container">
+        <div class="wrapper1">
+            {% include "includes/messages.html" %}
+        </div>
+    </div>
     <div class="padding">
-        <div style="text-align: center"> <i class="mdi mdi-forum"></i> <br>
-            <h2 style="color: #666;">Contact Us</h2> <br>
-            <p class="text-center" style="color:#444;">Have any Questions? Feel free to contact our Tech Support</p> <br> <button type="submit" class="btn btn-outline-dark ml-sm-2 mb-2" style="border-radius: 50px" data-bs-toggle="modal" data-bs-target="#contact">&emsp;&emsp;Contact Support&emsp;&emsp;</button>
+        <div style="text-align: center"> <i class="mdi mdi-forum"></i>
+            <h2 class="heading-contact" style="color: #666;">Contact Us</h2> <br>
+            <p class="text-center para-contact" style="color:#444;">Have any Questions? Feel free to contact our Tech Support</p> <br> <button type="submit" class="btn btn-outline-dark" style="border-radius: 50px" data-bs-toggle="modal" data-bs-target="#contact">Contact Support</button>
         </div>
         <!--Contact Modal-->
         <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content bg-dark">
                     <div class="modal-header">
-                        <h5 class="modal-title text-light" id="exampleModalLabel">We would love to hear from you!!</h5> <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                        <h5 class="modal-title text-light" id="exampleModalLabel">We would love to hear from you!!</h5> <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"> </button>
                     </div>
-                    <div class="modal-body">
-                        <form class="form my-3 mr-2 ml-2">
-                            <div class="form-row">
-                                <div class="form-group col-sm"> <label for="exampleInputEmail1" style="color: #fff;">Enter Name</label> <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="First"> </div>
-                                <div class="form-group col-sm"> <label class="sm-lbl" for="exampleInputEmail1" style="color:rgba(0, 0, 0, 0); visibility: hidden;">Enter Name</label> <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Last"> </div>
-                            </div>
-                            <div class="form-group"> <label for="exampleInputEmail1" style="color: #fff;">Enter Email</label> <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=""> </div>
-                            <div class="form-group"> <label for="exampleFormControlTextarea1" style="color: #fff;">Your Query or Question</label> <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea> </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer"> <button type="submit" class="btn btn-outline-light ml-sm-2" style="border-radius: 50px; width:100%;" data-dismiss="modal" aria-label="Close">Submit</button> </div>
+                    <form action = {% url 'feedback' %} method="POST" class="form my-3 mr-2 ml-2">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                                <div class="form-row">
+                                    <div class="form-group col-sm"> <label for="exampleInputEmail1" style="color: #fff;">Enter Name</label> <input name="first" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="First" required> </div>
+                                    <div class="form-group col-sm"> <label class="sm-lbl" for="exampleInputEmail1" style="color:rgba(0, 0, 0, 0); visibility: hidden;">Enter Name</label> <input name="last" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Last" required> </div>
+                                </div>
+                                <div class="form-group"> <label for="exampleInputEmail1" style="color: #fff;">Enter Email</label> <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" required> </div>
+                                <div class="form-group"> <label for="exampleFormControlTextarea1" style="color: #fff;">Your Query or Question</label> <textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea> </div>
+                        </div>
+                        <div class="modal-footer"> <button type="submit" class="btn btn-outline-light ml-sm-2" style="border-radius: 50px; width:100%;" data-dismiss="modal" aria-label="Close">Submit</button> </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 {% endblock content %}

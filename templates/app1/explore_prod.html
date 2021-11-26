@@ -6,9 +6,12 @@
 
 {% block content %}
 
+
+    <div class="image-explore">
+
     <div class="container">
-        <div class="wrapper">
-            <h3>Enter the Parameters you want to search upon:</h3>
+        <div class="wrapper1">
+            <br><h3>Enter the Parameters you want to search upon:</h3>
         </div>
         <form action="{% url 'filterproduct' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
@@ -74,6 +77,7 @@
                 </div>
             </div>
         </form>
+    </div>
     </div>
 
 {% endblock %}

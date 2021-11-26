@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load app1_extras %}
+
+{% block title %}
+  | Absolute
+{% endblock title %}|
+
+{% block content %}
+    <div class="container">
+        <div class="wrapper1">
+            <br>
+            {% if flag %}
+                <h3>Input Parameters provided:</h3>
+                {% for input in inputs %}
+                    <h3>{{ input }}</h3>
+                {% endfor %}
+                {% if not length_length %}
+                    <h2>No Products Found</h2>
+                {% else %}
+                    <h2>List of Products</h2>
+                {% endif %}
+            {% else %}
+                <center><h2 class="mt-5">Click the Product for info</h2></center>
+            {% endif %}
+            <br>
+        </div>
+
+        {% for i in length %}
+            <center><button type="submit" class="btn btn-outline-dark ml-sm-2 mt-5" style="border-radius: 50px" data-bs-toggle="modal" data-bs-target="#contact-{{forloop.counter}}">{{ product_name|index:i }}</button></center>
+            <div class="modal fade" id="contact-{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-light" id="exampleModalLabel">Product Name: {{product_name|index:i}}</h5><button type="button" class="btn-close btn-close-white text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p style="color: white;">Product Type: {{product_type|index:i}}</p>
+                            <div><a href="{{use_mix|index:i}}" target="_blank"><button type="button" class="btn btn-outline-light" style="border-radius: 50px; width:100%;">Use&Mix</button></a></div>
+                            <div class="mt-2"><a href="{{safety_ins|index:i}}" target="_blank"><button type="button" class="btn btn-outline-light" style="border-radius: 50px; width:100%;">Safety Instructions</button></a></div><br>
+                            <p style="color: white;">Key Benefits</p>
+                            <ul style="color: white;">
+                                {% for benefit in key_benefits|index:i %}
+                                    <li>{{ benefit }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% if not crop_flag %}
+                            <p style="color: white;">Registered Crops</p>
+                            <ul style="color: white;">
+                                {% for crop in registered_crops|index:i %}
+                                    <li>{{ crop }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            {% if not pest_flag %}
+                            <p style="color: white;">Pests</p>
+                            <ul style="color: white;">
+                                {% for pest in effective_against|index:i %}
+                                    <li>{{ pest }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            {% if not state_flag %}
+                            <p style="color: white;">States</p>
+                            <ul style="color: white;">
+                                {% for state in geo_location|index:i %}
+                                    <li>{{ state }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            <!-- <div class="modal-footer"> <a href="{{use_mix|index:i}}" target="_blank"><button type="button" class="btn btn-outline-light" style="border-radius: 50px; width:100%;">Use&Mix</button></a>
+                            <a href="{{safety_ins|index:i}}" target="_blank"><button type="button" class="btn btn-outline-light" style="border-radius: 50px; width:100%;">Safety Instructions</button></a> </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

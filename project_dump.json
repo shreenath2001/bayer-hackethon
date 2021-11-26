@@ -1,0 +1,501 @@
+[
+{
+    "model": "app1.contact",
+    "pk": 14,
+    "fields": {
+        "first_name": "bharadwajshreenath3@gmail.com",
+        "last_name": "Bharadwaj",
+        "email": "bharadwajshreenath3@gmail.com",
+        "message": "wekfwef;hwefoi",
+        "created_at": "2021-11-23T14:53:54.527Z"
+    }
+},
+{
+    "model": "app1.contact",
+    "pk": 15,
+    "fields": {
+        "first_name": "bharadwajshreenath3@gmail.com",
+        "last_name": "Bharadwaj",
+        "email": "bharadwajshreenath3@gmail.com",
+        "message": "",
+        "created_at": "2021-11-23T17:22:40.039Z"
+    }
+},
+{
+    "model": "app1.contact",
+    "pk": 16,
+    "fields": {
+        "first_name": "bharadwajshreenath3@gmail.com",
+        "last_name": "Bharadwaj",
+        "email": "bharadwajshreenath3@gmail.com",
+        "message": "",
+        "created_at": "2021-11-23T17:29:16.108Z"
+    }
+},
+{
+    "model": "app1.orderupdate",
+    "pk": 1,
+    "fields": {
+        "order_id": 1,
+        "update_desc": "Kolkata,Kharagpur,Ranchi,Rourkela,Dest",
+        "arrived": "Y,Y,N,N,N",
+        "dispatched": "Y,N,N,N",
+        "arrived_date": "'',21/10/2021,22/10/2021,23/10/2021,23/10/2021",
+        "dispatched_date": "20/10/2021,21/10/2021,22/10/2021,23/10/2021,''",
+        "arrived_time": "'',05:15,13:21,7:52,16:44",
+        "dispatched_time": "14:26,9:45,18:05,12:40,''",
+        "timestamp": "2021-11-25"
+    }
+},
+{
+    "model": "app1.orderupdate",
+    "pk": 2,
+    "fields": {
+        "order_id": 2,
+        "update_desc": "Puri,Bhubaneswar,Cuttack,Berampur,Dest",
+        "arrived": "Y,Y,Y,N,N",
+        "dispatched": "Y,Y,Y,N",
+        "arrived_date": "'',21/10/2021,22/10/2021,23/10/2021,23/10/2021",
+        "dispatched_date": "20/10/2021,21/10/2021,22/10/2021,23/10/2021,''",
+        "arrived_time": "'',05:15,13:21,7:52,16:44",
+        "dispatched_time": "14:26,9:45,18:05,12:40,''",
+        "timestamp": "2021-11-25"
+    }
+},
+{
+    "model": "app1.orderupdate",
+    "pk": 3,
+    "fields": {
+        "order_id": 3,
+        "update_desc": "Patna,Gaya,Varanasi,Lucknow,Dest",
+        "arrived": "Y,Y,Y,Y,N",
+        "dispatched": "Y,Y,Y,Y",
+        "arrived_date": "",
+        "dispatched_date": "",
+        "arrived_time": "",
+        "dispatched_time": "",
+        "timestamp": "2021-11-25"
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$260000$akP2rOwIpxYfcV77WVyY33$9IT9hYKVw48rlJbiaJfe7TwprEqw5YN6a/vFInPmcqU=",
+        "last_login": "2021-11-22T09:50:21.127Z",
+        "is_superuser": true,
+        "username": "bayer",
+        "first_name": "",
+        "last_name": "",
+        "email": "bharadwajshreenath@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-11-22T09:49:29.681Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "wggu400va6qklrjav2nq1fttrhk2s0tf",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hCgEMCle89AGGZGqgaS0q6Md9cmXej2v_f-S6S8rTVtg5Y0ozgLLU6_G-TyoLYDvOd267L0ti4zyF2RBx3y2pGel8P9O6h51G-tfFbOFNA8mUhBG4zKcyACC-CU1sHqEAmDZ4POE0cHhp3FDMoiT-L9AdnKOAU:1mp5xt:dOSDmbq2ljTZF6mvD-or-d3EYClRonpCrh9LJB97hkU",
+        "expire_date": "2021-12-06T09:50:21.131Z"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2021-11-23T01:33:55.958Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "contact"
+        ],
+        "object_id": "3",
+        "object_repr": "",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2021-11-23T01:33:55.972Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "contact"
+        ],
+        "object_id": "2",
+        "object_repr": "xyz@gmail.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2021-11-23T01:33:55.974Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "contact"
+        ],
+        "object_id": "1",
+        "object_repr": "xyz@gmail.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2021-11-23T01:49:20.918Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "contact"
+        ],
+        "object_id": "11",
+        "object_repr": "bharadwajshreenath3@gmail.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2021-11-23T01:49:20.925Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "contact"
+        ],
+        "object_id": "10",
+        "object_repr": "bharadwajshreenath3@gmail.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2021-11-23T01:49:20.926Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "contact"
+        ],
+        "object_id": "9",
+        "object_repr": "bharadwajshreenath3@gmail.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2021-11-23T01:49:20.927Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "contact"
+        ],
+        "object_id": "8",
+        "object_repr": "bharadwajshreenath3@gmail.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2021-11-23T01:49:20.929Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "contact"
+        ],
+        "object_id": "7",
+        "object_repr": "bharadwajshreenath3@gmail.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2021-11-23T01:49:20.930Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "contact"
+        ],
+        "object_id": "6",
+        "object_repr": "bharadwajshreenath3@gmail.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2021-11-23T01:49:20.931Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "contact"
+        ],
+        "object_id": "5",
+        "object_repr": "bharadwajshreenath3@gmail.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2021-11-23T01:49:20.932Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "contact"
+        ],
+        "object_id": "4",
+        "object_repr": "qwerty@gmail.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2021-11-23T02:12:17.109Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "contact"
+        ],
+        "object_id": "13",
+        "object_repr": "bharadwajshreenath3@gmail.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2021-11-23T02:12:17.115Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "contact"
+        ],
+        "object_id": "12",
+        "object_repr": "bharadwajshreenath3@gmail.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2021-11-25T09:53:06.291Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "orderupdate"
+        ],
+        "object_id": "1",
+        "object_repr": "OrderUpdate object (1)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2021-11-25T09:54:06.081Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "orderupdate"
+        ],
+        "object_id": "2",
+        "object_repr": "OrderUpdate object (2)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2021-11-25T09:55:02.261Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "orderupdate"
+        ],
+        "object_id": "3",
+        "object_repr": "OrderUpdate object (3)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2021-11-25T09:55:41.700Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "orderupdate"
+        ],
+        "object_id": "3",
+        "object_repr": "OrderUpdate object (3)",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Update desc\", \"Arrived\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2021-11-25T09:55:51.847Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "orderupdate"
+        ],
+        "object_id": "2",
+        "object_repr": "OrderUpdate object (2)",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Update desc\", \"Arrived\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2021-11-25T09:56:01.466Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "orderupdate"
+        ],
+        "object_id": "1",
+        "object_repr": "OrderUpdate object (1)",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Update desc\", \"Arrived\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2021-11-25T10:22:08.131Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "orderupdate"
+        ],
+        "object_id": "1",
+        "object_repr": "OrderUpdate object (1)",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Arrived date\", \"Dispatched date\", \"Arrived time\", \"Dispatched time\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2021-11-25T10:22:22.688Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "orderupdate"
+        ],
+        "object_id": "1",
+        "object_repr": "OrderUpdate object (1)",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2021-11-25T12:22:59.149Z",
+        "user": [
+            "bayer"
+        ],
+        "content_type": [
+            "app1",
+            "orderupdate"
+        ],
+        "object_id": "2",
+        "object_repr": "OrderUpdate object (2)",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Arrived date\", \"Dispatched date\", \"Arrived time\", \"Dispatched time\"]}}]"
+    }
+}
+]

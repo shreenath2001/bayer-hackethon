@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load app1_extras %}
+
+{% block style %}
+  <style>
+      body{
+          overflow: auto;
+      }
+  </style>
+{% endblock style %}
+
+{% block title %}
+  | Trace Product 
+{% endblock title %}
+
+{% block content %}
+    <div class="image-trace">
+    <div class="container">
+        <img src="{% static 'img/trace1.png' %}" alt="" class="img-trace">
+            <br><h2>Enter your Order Id and Email address to track your order</h2><br>
+            <form method="POST" action="{% url 'trace' %}">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="orderId"><strong><h5>Order Id</h5></strong></label>
+                        <input type="number" class="form-control" id="orderId" name="orderId" placeholder="Order Id" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3" onclick="smoothScroll(document.getElementById('second-4'))">Track Order</button>
+                </div>
+            </form>
+        <div class="col my-4">
+            <h2>Your Order Status</h2>
+            <div class="my-4">
+                {% if message %}
+                    <br>
+                    <ul class="list-group" id="items">
+                        <h2>{{message}}</h2>
+                    </ul>
+                    <br>
+                    {% if updations %}
+                    <div class="timeline">
+                        {% for update in updations  %}
+                            <div class="container1 right">
+                                {% for i in length %}
+                                    <h4 id="second-{{forloop.counter}}">{{update|index:i}}</h4>
+                                {% endfor %}
+                            </div><br><br>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                {% else %}
+                    <ul class="list-group" id="items">
+                        Enter your order Id and Email and click Track Order to find details about your order!
+                    </ul>
+                {% endif %}
+            </div>
+        </div><br><br><br>
+    </div>
+    </div>
+{% endblock content %}

@@ -7,66 +7,68 @@
 {% endblock title %}
 
 {% block content %}
-  
+    
+    <div class="image-recommend">
     <div class="container">
         <div class="col-12 col-md-9">
-            <br><h2 class="col-12 offset-md-4" style="color: black"><strong>Make Recommendation For Crop</strong></h2><br>
+            <br><br><h2 class="col-12 offset-md-6" style="color: black"><strong>Make Recommendation For Crop</strong></h2><br>
             <form action="{% url 'result' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-group row">
-                    <label class="col-12 col-md-4 col-form-label"><h5>Nitrogen Content(kg/ha)</h5></label>
+                    <label class="col-12 col-md-4 offset-md-2 col-form-label"><h5>Nitrogen Content(kg/ha)</h5></label>
                     <div class="col-12 col-md-6">
                         <input type="number" name="nitrogen" class="form-control" id="nitrogen" min="0" max="140" step="0.1" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-12 col-md-4 col-form-label"><h5>Phosphorous Content(kg/ha)</h5></label>
+                    <label class="col-12 col-md-4 offset-md-2 col-form-label"><h5>Phosphorous Content(kg/ha)</h5></label>
                     <div class="col-12 col-md-6">
                         <input type="number" name="phosphorus" class="form-control" id="phosphorus" min="5" max="145" step="0.1" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-12 col-md-4 col-form-label"><h5>Potassium Content(kg/ha)</h5></label>
+                    <label class="col-12 col-md-4 offset-md-2 col-form-label"><h5>Potassium Content(kg/ha)</h5></label>
                     <div class="col-12 col-md-6">
                         <input type="number" name="potassium" id="potassium" class="form-control" min="5" max="205" step="0.1" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-12 col-md-4 col-form-label"><h5>Relative Humidity(%)</h5></label>
+                    <label class="col-12 col-md-4 offset-md-2 col-form-label"><h5>Relative Humidity(%)</h5></label>
                     <div class="col-12 col-md-6">
                         <input type="number" name="humidity" id="humidity" class="form-control" min="14" max="100" step="0.1" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-12 col-md-4 col-form-label"><h5>Temperature(°c)</h5></label>
+                    <label class="col-12 col-md-4 offset-md-2 col-form-label"><h5>Temperature(°c)</h5></label>
                     <div class="col-12 col-md-6">
                         <input type="number" name="temperature" id="time_spend_company" class="form-control" min="8" max="44" step="0.1" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-12 col-md-4 col-form-label"><h5>ph Value</h5></label>
+                    <label class="col-12 col-md-4 offset-md-2 col-form-label"><h5>ph Value</h5></label>
                     <div class="col-12 col-md-6">
                         <input type="number" name="ph" id="ph" class="form-control" min="3.5" max="10" step="0.1" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-12 col-md-4 col-form-label"><h5>Rainfall(mm)</h5></label>
+                    <label class="col-12 col-md-4 offset-md-2 col-form-label"><h5>Rainfall(mm)</h5></label>
                     <div class="col-12 col-md-6">
                         <input type="number" name="rainfall" id="rainfall" class="form-control" min="20" max="300" step="0.1" required>
                     </div>
                 </div>
                 <br>
                 <div class="form-group row">
-                    <div class="offset-md-6 col-md-10">
+                    <div class="offset-md-8 col-md-10">
                         <button type="submit" class="btn btn-primary"><strong>Make Recommendation</strong></button>
                     </div>
                 </div>
             </form>
             <br><br>
             {% if prediction %}
-                <h2 class="col-12 offset-md-4">Crop recommended is: <strong>{{prediction}}</strong></h2>
+                <h2 class="col-12 offset-md-6">Crop recommended is: <strong>{{prediction}}</strong></h2>
             {% endif %}
         </div>
+    </div>
     </div>
 
 {% endblock content %}
