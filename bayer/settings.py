@@ -27,7 +27,12 @@ SECRET_KEY = 'django-insecure-9-k%wu=&mel!nbx8tv5%m8-aq8)khgj50ats21yvj337(d*a&n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['bayer-hackethon.herokuapp.com']
+server = "dev"
+
+if(server == 'dev'):
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = ['bayer-hackethon.herokuapp.com']
 
 
 # Application definition
@@ -84,18 +89,19 @@ WSGI_APPLICATION = 'bayer.wsgi.application'
     }
 } """
 
-''' DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bayer_db',
-        'USER': 'postgres',
-        'PASSWORD': 'Shree2001',
-        'HOST': 'localhost',
-        'PORT': 5433,
+if(server == 'dev'):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'bayer_db',
+            'USER': 'postgres',
+            'PASSWORD': 'Shree2001',
+            'HOST': 'localhost',
+            'PORT': 5433,
+        }
     }
-} '''
-
-DATABASES = {'default': dj_database_url.config(default='postgres://postgres:Shree2001@localhost/bayer_db')}
+else:
+    DATABASES = {'default': dj_database_url.config(default='postgres://postgres:Shree2001@localhost/bayer_db')}
 
 
 # Password validation

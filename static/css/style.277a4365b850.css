@@ -1,0 +1,338 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    overflow: hidden;
+}
+
+/* #overlay {
+   background-image: url("http://allroundnews.com/wp-content/uploads/2012/02/seamless-wood-texture-free-76.jpg");
+   background-color: white;
+   width: 100%;
+   height: 30px;
+   margin: 0;
+   top: -20px;
+   margin-left: auto;
+   margin-right: auto;
+}*/
+
+.navbar{
+    /* position: fixed;
+    top: 0;
+    width: 100%; */
+    z-index: 1;
+}
+nav li {
+    display: inline-block;
+    height: 100%;
+    padding: 10px;
+}
+
+.active {
+  background-color: rgb(16, 16, 129);
+}
+
+.image-explore{
+    background-image: url("../img/bg11.f9d6e2e84f54.jpg");
+    /* background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 1.0; */
+    height: 100vh;
+    object-fit: contain;
+}
+
+.image-feedback{
+  background-image: url("../img/bg13.f3e6cf940a5b.jpg");
+  /* background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 1.0; */
+  height: 100vh;
+  object-fit: contain;
+  background-size: cover;
+}
+
+.image-recommend{
+  background-image: url("../img/bg18.f525a95607e4.jpg");
+  /* background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 1.0; */
+  height: 100vh;
+  object-fit: contain;
+  background-size: cover;
+}
+
+.image-result{
+  background-image: url("../img/bg19.3d058216ad73.jpg");
+  /* background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 1.0; */
+  height: 100vh;
+  object-fit: contain;
+  background-size: cover;
+}
+
+.image-trace{
+  background-image: url("../img/bg21.be31d4a98d5e.jpg");
+  /* background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 1.0; */
+  min-height: 100vh;
+  height: 100%;
+  object-fit: contain;
+  background-size: cover;
+}
+
+.d-block{
+  height: 100vh;
+  width: 100vw;
+  /* background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; */
+  object-fit: cover;
+}
+
+.wrapper{
+    max-width: 450px;
+    margin: 40px auto;
+  }
+.wrapper1{
+    max-width: 450px;
+    margin: 0 auto;
+  }
+  .wrapper .search-input{
+    background: #fff;
+    width: 100%;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.12);
+  }
+  .search-input input{
+    height: 55px;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0 60px 0 20px;
+    font-size: 18px;
+    box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+  }
+  .search-input.active input{
+    border-radius: 5px 5px 0 0;
+  }
+  .search-input .autocom-box{
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+    max-height: 250px;
+    overflow-y: auto;
+  }
+  .search-input.active .autocom-box{
+    padding: 10px 8px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .autocom-box li{
+    list-style: none;
+    padding: 8px 12px;
+    display: none;
+    width: 100%;
+    cursor: default;
+    border-radius: 3px;
+  }
+  .search-input.active .autocom-box li{
+    display: block;
+  }
+  .autocom-box li:hover{
+    background: #efefef;
+  }
+
+.mdi {
+  font-size: 50px
+}
+
+.padding {
+  padding: 8rem !important
+}
+
+.heading-contact{
+  margin-top: 50px;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: rgb(54, 54, 54);
+  top: 0;
+  bottom: 0;
+  left: 0%;
+  margin-left: -3px;
+}
+
+/* Container around content */
+.container1 {
+  padding: 10px 20px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+
+/* The circles on the timeline */
+.container1::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -17px;
+  background-color: white;
+  border: 4px solid #e01515;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Place the container to the left */
+/* .left {
+  left: 0;
+}
+ */
+
+/* Place the container to the right */
+.right {
+  left: 0%;
+}
+
+/* Add arrows to the left container (pointing right) */
+/* .left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent white;
+} */
+
+/* Add arrows to the right container (pointing left) */
+/* .right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 30px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+} */
+
+/* Fix the circle for containers on the right side */
+.right::after {
+  left: -16px;
+}
+
+/* The actual content */
+.content1 {
+  padding: 20px 30px;
+  background-color: white;
+  position: relative;
+  border-radius: 6px;
+}
+
+.img-trace{
+  position: absolute;
+  width: 600px;
+  height: auto;
+  top: -4%;
+  left: 55%;
+}
+
+
+@media only screen and (max-width: 800px) {
+  body {
+    overflow-y: auto;
+  }
+  #overlay{
+    height: 20px;
+  }
+  .image-explore{
+    min-height: 100vh;
+    height: 100%;
+  }
+  .image-feedback{
+    min-height: 100vh;
+    height: 100%;
+  }
+  .image-recommend{
+    height: 100%;
+  }
+  .image-result{
+    min-height: 100vh;
+    height: 100%;
+  }
+  .image-trace{
+    min-height: 100vh;
+    height: 100%;
+  }
+  .heading-contact{
+    margin-top: 0px;
+    display: none;
+  }
+  .para-contact{
+    display: none;
+  }
+
+  /* Place the timelime to the left */
+  .timeline::after {
+    left: 31px;
+  }
+
+/* Full-width containers */
+  .container1 {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+/* Make sure that all arrows are pointing leftwards */
+  .container1::before {
+    left: 60px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+  }
+
+/* Make sure all circles are at the same spot */
+  .left::after, .right::after {
+    left: 15px;
+  }
+
+/* Make all right containers behave like the left ones */
+  .right {
+    left: 0%;
+  }
+
+  .img-trace{
+    display: none;
+  }
+}
