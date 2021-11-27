@@ -5,3 +5,4 @@
 * We also have feature for plant disease detection. This feature will help farmers to know the disease of the crop. They need to upload the image of the leaf/crop and the model will help in detecting the disease of the crop. 
 * We have also created a feature for tracking the order, for this if we have the order id, we can track the order. 
 * We have also created a feature for taking feedback from the farmers about the products. This feature will allow us to provide necessary information about the products as per the farmer's need.
+* Go to site: [click here](https://bayer-hackethon.herokuapp.com/)
