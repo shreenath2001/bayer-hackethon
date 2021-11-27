@@ -24,5 +24,13 @@ class OrderUpdate(models.Model):
     dispatched_time = models.CharField(max_length=5000, default="")
     timestamp= models.DateField(auto_now_add= True)
 
+class authenticator(models.Model):
+    auth_secret = models.CharField(max_length=100)
+    claimed = models.BooleanField(default=False)
+    created_at = models.DateTimeField(blank = True, default = datetime.now)
+
+class Claimed(models.Model):
+    auth_secret = models.CharField(max_length=100)
+
 def __str__(self):
     return self.update_desc[0:7] + "..."

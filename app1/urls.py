@@ -9,6 +9,7 @@ urlpatterns = [
     path('crop-recommend/result', views.result, name='result'),
     path('feedback', views.feedback, name='feedback'),
     path('trace', views.trace, name='trace'),
+    path('authenticate', views.authenticate, name='authenticate'),
     path('absolute', views.absolute, name='absolute'),
     path('wolverine', views.wolverine, name='wolverine'),
     path('alion', views.alion, name='alion'),

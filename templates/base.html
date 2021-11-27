@@ -134,6 +134,21 @@
             <li class = 'nav-item'>
               <a class = 'nav-link' href="https://plant-disease-classify.herokuapp.com/" target="_blank">Plant Disease Classification</a>
             </li>
+            <li 
+            {% if 'authenticate' in request.path %}
+                class = 'nav-item active'
+            {% else %}
+                class = 'nav-item'
+            {% endif %} 
+            >
+              <a 
+              {% if 'authenticate' in request.path %}
+                class = 'nav-link active'
+              {% else %}
+                class = 'nav-link'
+              {% endif %}
+              href="{% url 'authenticate' %}">Authenticate Product</a>
+            </li>
           </ul>
         </div>
       </div>

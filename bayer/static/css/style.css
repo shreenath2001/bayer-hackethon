@@ -102,6 +102,20 @@ nav li {
   background-size: cover;
 }
 
+.image-auth{
+  background-image: url("../img/bg30.jpg");
+  /* background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 1.0; */
+  position: absolute;
+  min-height: 100vh;
+  height: 100%;
+  width: 100vw;
+  object-fit: contain;
+  background-size: cover;
+}
+
 .blend{
   position: absolute;
   height: 100vh;
@@ -568,6 +582,11 @@ nav li {
   background-color: rgba(255,255,255,.5);
 }
 
+.auth{
+  margin-top: 20vh;
+  max-width: 400px;
+}
+
 
 @media only screen and (max-width: 800px) {
   body {
@@ -592,6 +611,14 @@ nav li {
     height: 100%;
   }
   .image-trace{
+    min-height: 100vh;
+    height: 100%;
+  }
+  .image-product{
+    min-height: 100vh;
+    height: 100%;
+  }
+  .image-auth{
     min-height: 100vh;
     height: 100%;
   }

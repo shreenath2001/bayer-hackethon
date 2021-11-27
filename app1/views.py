@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 import pandas as pd
 import joblib
-from .models import Contact, OrderUpdate
+from .models import Contact, OrderUpdate, authenticator, Claimed
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
@@ -389,6 +389,44 @@ def trace(request):
 
         return render(request, 'app1/trace.html', data)
     return render(request, 'app1/trace.html')
+
+def authenticate(request):
+
+    if request.method == 'POST':
+        auth = request.POST['code']
+        auth_secret = list(authenticator.objects.values_list('auth_secret'))
+        claimed = list(Claimed.objects.values_list('auth_secret'))
+        codes = []
+        claimed_codes = []
+        for secret in auth_secret:
+            codes.append(secret[0])
+        for secret in claimed:
+            claimed_codes.append(secret[0])
+        ''' print("secret:", codes)
+        print("claimed:", claimed[0][0]) '''
+        index = -1
+        claimed = -1
+        for i in range(len(codes)):
+            if auth == codes[i]:
+                index = i
+        for i in range(len(claimed_codes)):
+            if auth == claimed_codes[i]:
+                claimed = 1
+                break
+        if(index == -1):
+            message = "This code is not authenticated!!"
+        elif(claimed == 1):
+            message = "This code is already claimed!!"
+        else:
+            message = 'This product is authenticated!!'
+        claimed = Claimed(auth_secret = auth)
+        claimed.save()
+        data = {
+            'message':message,
+        }
+        return render(request, 'app1/authenticate.html', data)
+
+    return render(request, 'app1/authenticate.html')
 
 def absolute(request):
     index = [0]
