@@ -354,22 +354,24 @@ def trace(request):
                     sub.append('')
                     if(dispatched[i] == 'Y'):
                         sub.append('Dispatched on '+ dispatched_date[i]+ ' at '+ dispatched_time[i])
+                    else:
+                        sub.append('Expected to dispatch on '+ dispatched_date[i])
                 elif(i!=length-1):
                     sub.append(update[i])
                     if(arrived[i] == 'Y'):
                         sub.append('Arrived on '+ arrived_date[i]+ ' at '+ arrived_time[i])
                     else:
-                        sub.append('')
+                        sub.append('Expected to arrive on '+ arrived_date[i])
                     if(dispatched[i] == 'Y'):
                         sub.append('Dispatched on '+ dispatched_date[i]+ ' at '+ dispatched_time[i])
                     else:
-                        sub.append('')
+                        sub.append('Expected to dispatch on '+ dispatched_date[i])
                 else:
                     sub.append('Dest.')
                     if(arrived[i] == 'Y'):
                         sub.append('Arrived at '+ arrived_date[i]+ ' on '+ arrived_time[i])
                     else:
-                        sub.append('')
+                        sub.append('Expected to arrive on '+ arrived_date[i])
                     sub.append('')
                 updations.append(sub)
             #print("updations:", updations)
