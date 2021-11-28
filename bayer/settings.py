@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-9-k%wu=&mel!nbx8tv5%m8-aq8)khgj50ats21yvj337(d*a&n'
 
-server = "prod"
+server = "dev"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if(server == "prod"):
@@ -104,7 +104,7 @@ if(server == 'dev'):
         }
     }
 else:
-    DATABASES = {'default': dj_database_url.config(default='postgres://postgres:Shree2001@localhost/bayer_db')}
+    DATABASES = {'default': dj_database_url.config(default='postgres://postgres:password@localhost/bayer_db')}
 
 
 # Password validation
@@ -153,7 +153,7 @@ STATICFILES_DIRS = [
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'bharadwajshreenath@gmail.com'
-EMAIL_HOST_PASSWORD = 'Shree2001'
+EMAIL_HOST_PASSWORD = '*******'
 EMAIL_USE_TLS = True
 
 # Whitenoise settings
